@@ -16,25 +16,29 @@ class rsp:
         return a
     def show_cp_pick(cp_pick):  #컴퓨터가 선택한 것 이미지로 화면에 띄우기
         if cp_pick == "가위":
-            #imgFile = "C:\\Users\\Haejun\\Desktop\\GitHub\\First_in_hufs\\PYTHON\\rock_scissors_paper\\rsp_image\\가위.png"
-            imgFile = "https://github.com/Back1ash/First_in_hufs/blob/master/PYTHON/rock_scissors_paper/rsp_image/%EA%B0%80%EC%9C%84.png"
+            imgFile = "C:\\Users\\Haejun\\Desktop\\GitHub\\First_in_hufs\\PYTHON\\rock_scissors_paper\\rsp_image\\scissor.png"
         elif cp_pick == "바위":
-            imgFile = "C:\\Users\\Haejun\\Desktop\\GitHub\\First_in_hufs\\PYTHON\\rock_scissors_paper\\rsp_image\\바위.jpg"
+            imgFile = "C:\\Users\\Haejun\\Desktop\\GitHub\\First_in_hufs\\PYTHON\\rock_scissors_paper\\rsp_image\\rock.jpg"
         elif cp_pick == "보":
-            imgFile = "C:\\Users\\Haejun\\Desktop\\GitHub\\First_in_hufs\\PYTHON\\rock_scissors_paper\\rsp_image\\보.png"
+            imgFile = "C:\\Users\\Haejun\\Desktop\\GitHub\\First_in_hufs\\PYTHON\\rock_scissors_paper\\rsp_image\\paper.png"
         
-        img = cv2.imread(imgFile, cv2.IMREAD_COLOR)
-        cv2.imshow('가위_바위_보', img)
+        img = cv2.imread(imgFile, cv2.IMREAD_COLOR)     #경로의 이미지 출력옵션 선택
+        cv2.imshow('가위_바위_보', img)                 #이미지 출력
 
-        cv2.waitKey(500)
-        cv2.destroyAllWindows()
+        cv2.waitKey(5000)                   #5초동안
+        cv2.destroyAllWindows()             #그 이후 자동 창 닫힘
 
-    def bring_it_on(cp, usr):
+    def bring_it_on(cp, usr):               #승패를 가르는 함수
         if cp==usr:
+            print("무승부")
+        elif (cp=="가위" and usr=="바위") | (cp=="바위" and usr=="보") | (cp=="보" and usr=="가위"):
             print("승리")
+        else:
+            print("패배")
         
 
     
-    make_cp()
+    cp = make_cp()
     b = input_user()
-    show_cp_pick(b)
+    show_cp_pick(cp)
+    bring_it_on(cp, b)
