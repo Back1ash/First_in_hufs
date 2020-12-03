@@ -16,7 +16,8 @@ class rsp:
         return a
     def show_cp_pick(cp_pick):  #컴퓨터가 선택한 것 이미지로 화면에 띄우기
         if cp_pick == "가위":
-            imgFile = "C:\\Users\\Haejun\\Desktop\\GitHub\\First_in_hufs\\PYTHON\\rock_scissors_paper\\rsp_image\\가위.png"
+            #imgFile = "C:\\Users\\Haejun\\Desktop\\GitHub\\First_in_hufs\\PYTHON\\rock_scissors_paper\\rsp_image\\가위.png"
+            imgFile = "https://github.com/Back1ash/First_in_hufs/blob/master/PYTHON/rock_scissors_paper/rsp_image/%EA%B0%80%EC%9C%84.png"
         elif cp_pick == "바위":
             imgFile = "C:\\Users\\Haejun\\Desktop\\GitHub\\First_in_hufs\\PYTHON\\rock_scissors_paper\\rsp_image\\바위.jpg"
         elif cp_pick == "보":
@@ -27,6 +28,12 @@ class rsp:
 
         cv2.waitKey(500)
         cv2.destroyAllWindows()
+
+    def bring_it_on(cp, usr):
+        if cp==usr:
+            print("승리")
+        
+
     
     make_cp()
     b = input_user()
