@@ -36,8 +36,6 @@ class rsp:
         else:
             print("패배")
         
-
-    
     cp = make_cp()
     b = input_user()
     show_cp_pick(cp)
