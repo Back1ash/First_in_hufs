@@ -1,15 +1,17 @@
 public class outer{
     int n;
     int m;
-
-    public class InnerPublic{
+    public class Leedonggun() {
         int n;
-
-        public void f(){
-            n = 1;
-            m = 2;
-            this.n = 3;
-            super.m = 7;
+        public class InnerPublic{
+            int n;
+    
+            public void f(){
+                n = 1;
+                m = 2;
+                this.n = 3;
+                super.n = 7;
+            }
         }
     }
 
