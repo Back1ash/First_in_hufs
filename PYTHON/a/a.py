@@ -3,9 +3,8 @@
 i=0
 while i<3:
     file = input("aaaaaa : ").strip()
-    print(file)
     try:
-        f = open("inFruit.txt", 'r')
+        f = open(file, 'r')
         break
     except FileNotFoundError:
         import sys
