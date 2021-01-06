@@ -28,41 +28,50 @@ class Stack:
     def isEmpty(self):
         return self.__len__() == 0
 
+
 def infix_to_postfix(infix):
-    
+
     opstack = Stack()
     outstack = []
     token_list = infix.split(' ')
-		
+
     prec = {}
     prec['('] = 0
-    prec['+'] = 2
-    prec['-'] = 2
-    prec['*'] = 1
-    prec['/'] = 1
-    prec['^'] = 1
+    prec['+'] = 1
+    prec['-'] = 1
+    prec['*'] = 2
+    prec['/'] = 2
+    prec['^'] = 2
 
     for token in token_list:
         if token == '(':
             opstack.push(token)
         elif token == ')':
-            while opstack.pop() != '(' and len(opstack.items) != 0:
-              outstack.append(opstack.pop())
+            while opstack.top() != '(' and opstack.isEmpty() == False:
+                outstack.append(opstack.pop())
+            opstack.pop()
         elif token in '+-/*^':
-            priority = prec[token]
-            for pre in opstack.items:
-              if prec[pre] <= priority:
-                opstack.items.pop()
-                outstack.append(token)
+            if len(opstack.items) == 0:
+                opstack.push(token)
+            else:
+                priority = prec[token]
+                r_list = reversed(opstack.items)
+                count = 1
+                for pre in r_list:
+                    if prec[pre] > priority:
+                        outstack.append(opstack.items.pop(0-count))
+                    count += 1
+                count = 0
+                opstack.push(token)
         else:
-          outstack.append(token)
+            outstack.append(token)
 
-    while(opstack.items != []):
-      outstack.append(opstack.pop())
+    while opstack.isEmpty() == False:
+        outstack.append(opstack.pop())
 
     return " ".join(outstack)
 
-	
+
 infix_expr = input()
 postfix_expr = infix_to_postfix(infix_expr)
 print(postfix_expr)
