@@ -1,3 +1,6 @@
+from typing import NoReturn
+
+
 class Node: # 1. class Node 선언 부분
 	def __init__(self, key=None):
 		self.key = key
@@ -45,6 +48,7 @@ class DoublyLinkedList: # 2. class DoublyLinkedList 선언부분
 		if a.next == None:
 			a.next = new
 			new.next = self.head
+			self.head.prev = new
 		else:
 			new.next = a.next
 			a.next.prev = new
@@ -69,7 +73,7 @@ class DoublyLinkedList: # 2. class DoublyLinkedList 선언부분
 			return None
 		key = self.head.next.key
 		self.deleteNode(self.head.next)
-		return key	
+		return key
 
 	def popBack(self):
 		if self.head == self.head.prev:
@@ -100,7 +104,7 @@ class DoublyLinkedList: # 2. class DoublyLinkedList 선언부분
 		self.splice(li.head.next, li.head.prev, self.head.prev)
 
 	def split(self):
-		pass
+		return
 
 	def printList(self):
 		v = self.head
