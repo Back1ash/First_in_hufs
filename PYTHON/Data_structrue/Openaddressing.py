@@ -18,11 +18,13 @@ class HashOpenAddr:
 
     def find_slot(self, key):
         empty = "None"
-        for k in self.keys:
+        idx = 1
+        for k in self.keys[1:]:
             if k == key:
-                return self.keys.index(k)
+                return idx
             elif empty == "None" and k == None:
-                empty = self.keys.index(k)
+                empty = idx
+            idx += 1
         return empty
 
     def set(self, key, value=None):
@@ -43,13 +45,15 @@ class HashOpenAddr:
             return "None"
         j = i
         while True:
-            j = (j+1) % self.size
-            if self.keys[j] == None:
-                return key
-            k = self.hash_function(self.keys[j])
+            while True:
+                j = (j+1) % self.size
+                if self.keys[j] == None:
+                    self.keys[i] = self.keys[j]
+                    return key
+                k = self.hash_function(self.keys[j])
 
-            if not (i < k <= j or j < i < k or k <= j < i):
-                break
+                if not (i < k <= j or j < i < k or k <= j < i):
+                    break
             self.keys[i] = self.keys[j]
             i = j
             
